@@ -1,12 +1,17 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "Book Club", '#', id: "logo" %>
+      <%= link_to "Book Club", root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "Home",    root_path %></li>
           <li><%= link_to "Help",    help_path %></li>
-          <li><%= link_to "Sign in", '#' %></li>
+          <% if user_signed_in? %>
+          <li><%= link_to('Edit registration', edit_user_registration_path) %></li>
+          <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+          <% else %>
+          <li><%= link_to('Login', new_user_session_path)  %></li>
+          <% end %>
         </ul>
       </nav>
     </div>
